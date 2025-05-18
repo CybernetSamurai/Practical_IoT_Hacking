@@ -68,3 +68,11 @@ Configure Et0/0 as static trunk port
 
 Repeat these step on SWITCH2
 
+Both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. The following command configures IPv4 addreses. Set accordingly
+<pre>
+  ip 192.168.0.x/24
+  save
+</pre>
+
+CAMERA_01 should now be able to ping CENTRAL_SERVER
+
