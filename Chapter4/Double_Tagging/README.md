@@ -29,10 +29,10 @@ The ATTACKER machine is a Docker container. The imaged used in this lab is [finc
 
 **Right-click**, then select `Edit Config` from the context menu.
 
+![](assets/attacker-interfaces.png)
+
 ### Cisco IOS
 SWITCH1 and SWITCH2 are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
-
-![](assets/attacker-interfaces.png)
 
 ### Verify
 
