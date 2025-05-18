@@ -4,7 +4,6 @@ Double-tagging is a Layer 2 network attack technique that exploits the behavior 
 > This lab was inspired by *Practical IoT Hacking* (O'Reilly), Chapter 4: **Network Assessments**, Section *"Hopping into the IoT Network"*.
 
 ## Lab Topology
-
 ![](assets/double-tagging-topo.png)
 
 ## Setup
@@ -19,7 +18,6 @@ Double-tagging is a Layer 2 network attack technique that exploits the behavior 
 | SWITCH2  | Et0/1   | CENTRAL_SERVER   | VLAN 20 | Access                |
 
 ### VPCS Static IPv4 Configuration
-
 For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (virtual PC simulator) appliances. The following command will set an IP address and save the configuration if the device reboots.
 <pre>
   VPCS> ip 192.168.0.x/24
@@ -27,14 +25,12 @@ For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are [VPCS](https://docs
 </pre>
 
 ### Docker Container IPv4 Configuration
-
 The ATTACKER machine is a Docker container. The imaged used in this lab is [finchsec/scapy](https://hub.docker.com/r/finchsec/scapy), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
 
 **Right-click**, then select `Edit Config` from the context menu.
 
 ### Cisco IOS
-
-Both SWITCH1 and SWITCH2
+SWITCH1 and SWITCH2 are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
 
 ![](assets/attacker-interfaces.png)
 
