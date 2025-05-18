@@ -87,7 +87,7 @@ Both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. Th
 
 CAMERA_01 should now be able to ping CENTRAL_SERVER
 
-![](assets/camera-server-ping.gif) ![](assets/camear-server-ping.gif)
+![](assets/camera-server-ping.gif) ![](assets/camera-server-ping.gif)
 
 Configure the IP address of the Kali box
 
