@@ -77,3 +77,8 @@ CAMERA_01 should now be able to ping CENTRAL_SERVER
 
 ![](assets/camera-server-ping.gif)
 
+Configure the IP address of the Kali box
+
+R-Click -> Edit config
+
+![](assets/attacker-interfaces.png)
