@@ -18,7 +18,7 @@ Double-tagging is a Layer 2 network attack technique that exploits the behavior 
 | SWITCH2  | Et0/1   | CENTRAL_SERVER   | VLAN 20 | Access                |
 
 ### VPCS Static IPv4 Configuration
-For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (virtual PC simulator) appliances. The following command will set an IP address and save the configuration if the device reboots.
+To keep the lab simple, both CAMERA_01 and CENTRAL_SERVER are implemented using [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (Virtual PC Simulator) appliances. This provides a lightweight way to simulate basic IoT device connectivity within the network. The following command assigns an IP address and ensures the configuration persists across reboots.
 <pre>
   VPCS> ip 192.168.0.x/24
   VPCS> save
