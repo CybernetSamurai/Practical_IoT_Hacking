@@ -30,17 +30,7 @@ For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are [VPCS](https://docs
 
 The ATTACKER machine is a Docker container. The imaged used in this lab is [finchsec/scapy](https://hub.docker.com/r/finchsec/scapy), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
 
-R-Click -> Edit config
-
-**Right-click** the item, then select **Edit Config** from the menu.
-
-🖱️ **Right-click** → 🛠️ **Edit Config**
-
-Right-click the item, then choose `Edit Config`.
-
-🖱️ **Right-click**, then select `Edit Config` from the context menu.
-
-
+**Right-click**, then select `Edit Config` from the context menu.
 
 ![](assets/attacker-interfaces.png)
 
