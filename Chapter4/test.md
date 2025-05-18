@@ -4,6 +4,7 @@ test
 
 ![Lab Topology](assets/double-tagging-topo.png)
 
+![test](assets/camera-server-ping.gif)
 
 Create new vlan
 <pre>
