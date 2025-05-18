@@ -17,7 +17,7 @@
 
 ### VPCS Static IPv4 Configuration
 
-For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. The following command will set an IP address and save the configuration if the device reboots.
+For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (virtual PC simulator) appliances. The following command will set an IP address and save the configuration if the device reboots.
 <pre>
   VPCS> ip 192.168.0.x/24
   VPCS> save
