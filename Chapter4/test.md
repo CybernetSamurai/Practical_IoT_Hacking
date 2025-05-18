@@ -4,6 +4,18 @@ test
 
 ![](assets/double-tagging-topo.png)
 
+## Setup
+
+| Switch   | Port    | Connected Device | VLAN    | Port Mode             |
+|----------|---------|------------------|---------|-----------------------|
+| SWITCH1  | Et0/0   | SWITCH2          | N/A     | Trunk (native VLAN 1) |
+| SWITCH1  | Et0/1   | CAMERA_01        | VLAN 20 | Access                |
+| SWITCH1  | Et0/2   | ATTACKER         | VLAN 1  | Access                |
+| SWITCH2  | Et0/0   | SWITCH1          | N/A     | Trunk (native VLAN 1) |
+| SWITCH2  | Et0/1   | CENTRAL_SERVER   | VLAN 20 | Access                |
+
+
+
 Create new vlan
 <pre>
   SWITCH1> enable
