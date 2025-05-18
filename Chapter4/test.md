@@ -4,8 +4,6 @@ test
 
 ![Lab Topology](assets/double-tagging-topo.png)
 
-![test](assets/camera-server-ping.gif)
-
 Create new vlan
 <pre>
   SWITCH1> enable
@@ -76,4 +74,6 @@ Both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. Th
 </pre>
 
 CAMERA_01 should now be able to ping CENTRAL_SERVER
+
+![test](assets/camera-server-ping.gif)
 
