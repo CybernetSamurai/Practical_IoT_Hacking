@@ -1,4 +1,4 @@
-test
+# Title
 
 ## 🖥️ Lab Topology
 
@@ -14,7 +14,9 @@ test
 | SWITCH2  | Et0/0   | SWITCH1          | N/A     | Trunk (native VLAN 1) |
 | SWITCH2  | Et0/1   | CENTRAL_SERVER   | VLAN 20 | Access                |
 
+### IPv4 Addressing
 
+lorem ipsum
 
 Create new vlan
 <pre>
