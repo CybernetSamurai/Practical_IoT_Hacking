@@ -6,6 +6,7 @@
 
 ## Setup
 
+### Switch Port Layout
 | Switch   | Port    | Connected Device | VLAN    | Port Mode             |
 |----------|---------|------------------|---------|-----------------------|
 | SWITCH1  | Et0/0   | SWITCH2          | N/A     | Trunk (native VLAN 1) |
