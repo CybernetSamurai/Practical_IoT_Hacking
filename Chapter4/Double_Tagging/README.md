@@ -18,21 +18,21 @@ Double-tagging is a Layer 2 network attack technique that exploits the behavior 
 | SWITCH2  | Et0/1   | CENTRAL_SERVER   | VLAN 20 | Access                |
 
 ### VPCS Static IPv4 Configuration
-To keep the lab simple, both CAMERA_01 and CENTRAL_SERVER are implemented using [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (Virtual PC Simulator) appliances. This provides a lightweight way to simulate basic IoT device connectivity within the network. The following command assigns an IP address and ensures the configuration persists across reboots.
+To keep the lab simple, both **CAMERA_01** and **CENTRAL_SERVER** are implemented using [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (Virtual PC Simulator) appliances. This provides a lightweight way to simulate basic IoT device connectivity within the network. The following command assigns an IP address and ensures the configuration persists across reboots.
 <pre>
   VPCS> ip 192.168.0.x/24
   VPCS> save
 </pre>
 
 ### Docker Container IPv4 Configuration
-The ATTACKER machine is a Docker container. The imaged used in this lab is [finchsec/scapy](https://hub.docker.com/r/finchsec/scapy), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
+The **ATTACKER** machine is a Docker container. The imaged used in this lab is [finchsec/scapy](https://hub.docker.com/r/finchsec/scapy), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
 
 **Right-click**, then select `Edit Config` from the context menu.
 
 ![](assets/attacker-interfaces.png)
 
 ### Cisco IOS
-SWITCH1 and SWITCH2 are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
+**SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
 
 ### Verify
 
