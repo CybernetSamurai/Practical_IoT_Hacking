@@ -17,15 +17,15 @@
 
 ### VPCS Static IPv4 Configuration
 
-Both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. The following command configures IPv4 addreses. Set accordingly
+For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC simulator) appliances. The following command will set an IP address and save the configuration if the device reboots.
 <pre>
-  ip 192.168.0.x/24
-  save
+  VPCS> ip 192.168.0.x/24
+  VPCS> save
 </pre>
 
 ### Docker Container IPv4 Configuration
 
-Configure the IP address of the Kali box
+The ATTACKER machine is a Docker container. The imaged used in this lab is [finchsec/scapy]([finchsec/scapy](https://hub.docker.com/r/finchsec/scapy)), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
 
 R-Click -> Edit config
 
