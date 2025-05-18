@@ -82,3 +82,7 @@ Configure the IP address of the Kali box
 R-Click -> Edit config
 
 ![](assets/attacker-interfaces.png)
+
+ATTACKER should be able to ping CAMERA_01 or CENTRAL_SERVER due to network segmentation
+
+![](assets/attacker-ping.gif)
