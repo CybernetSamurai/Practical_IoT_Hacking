@@ -25,7 +25,7 @@ For simplicity's sake, both CAMERA_01 and CENTRAL_SERVER are VPCS (virtual PC si
 
 ### Docker Container IPv4 Configuration
 
-The ATTACKER machine is a Docker container. The imaged used in this lab is [finchsec/scapy]([finchsec/scapy](https://hub.docker.com/r/finchsec/scapy)), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
+The ATTACKER machine is a Docker container. The imaged used in this lab is [finchsec/scapy](https://hub.docker.com/r/finchsec/scapy), which gives access to the Scapy program for crafting custom network packets to perform this attack. Configuring IP addresses for Docker appliances in GNS3 is easy as shown below:
 
 R-Click -> Edit config
 
