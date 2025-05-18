@@ -32,6 +32,16 @@ The ATTACKER machine is a Docker container. The imaged used in this lab is [finc
 
 R-Click -> Edit config
 
+**Right-click** the item, then select **Edit Config** from the menu.
+
+🖱️ **Right-click** → 🛠️ **Edit Config**
+
+Right-click the item, then choose `Edit Config`.
+
+🖱️ **Right-click**, then select `Edit Config` from the context menu.
+
+
+
 ![](assets/attacker-interfaces.png)
 
 ### Verify
