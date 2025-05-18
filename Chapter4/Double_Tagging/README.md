@@ -32,6 +32,10 @@ The ATTACKER machine is a Docker container. The imaged used in this lab is [finc
 
 **Right-click**, then select `Edit Config` from the context menu.
 
+### Cisco IOS
+
+Both SWITCH1 and SWITCH2
+
 ![](assets/attacker-interfaces.png)
 
 ### Verify
@@ -123,3 +127,4 @@ You can prevent double-tagging attacks by:
 - Setting the native VLAN to an unused VLAN
 - Forcing all trunks to tag all traffic (i.e., vlan dot1q tag native)
 - Avoiding VLAN 1 for any user-access ports
+- Shutdown unused ports / sticky mac addresses / port security etc
