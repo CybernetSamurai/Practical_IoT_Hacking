@@ -114,3 +114,10 @@ Configure Et0/0 as static trunk port
 </pre>
 
 Repeat these step on SWITCH2
+
+
+## Mitigations
+You can prevent double-tagging attacks by:
+- Setting the native VLAN to an unused VLAN
+- Forcing all trunks to tag all traffic (i.e., vlan dot1q tag native)
+- Avoiding VLAN 1 for any user-access ports
