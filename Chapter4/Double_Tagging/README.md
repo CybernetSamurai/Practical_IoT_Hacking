@@ -98,7 +98,7 @@ Configure Et0/0 as static trunk port
   SWITCH1(config)# interface Et0/0
   SWITCH1(config-if)# switchport trunk encapsulation dot1q
   SWITCH1(config-if)# switchport mode trunk
-  SWITCH1(config-if)# switchport trunk allowed vlan 20
+  SWITCH1(config-if)# switchport trunk allowed vlan all
   SWITCH1(config-if)# exit
   SWITCH1# show interfaces trunk
   
