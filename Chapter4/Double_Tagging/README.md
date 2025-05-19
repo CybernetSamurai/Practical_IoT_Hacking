@@ -117,7 +117,7 @@ Assuming the VLAN was configured correctly, ATTACKER should no longer be able to
   >>> packet = IP(dst='192.168.0.x')/ICMP()
   >>> sr1(packet).show()
 </pre>
-![Attacker Ping](assets/attacker-connectivity-verify.gif)
+![Attacker Ping Fail](assets/attacker-ping-fail.gif)
 
 ## Exploit
 Craft a double-tagged ICMP packet with Scapy
