@@ -153,27 +153,27 @@ Use Scapy to craft a double-tagged ICMP Echo Request packet. The outer VLAN tag 
     Closer Examination
   </summary>
 
-  > Lorem ipsum.
+  > Capture between ATTACKER and SWITCH1. The crafted packet has two IEE 802.1Q tags as it is sent to the switch.
   > 
   > ![](assets/wireshark-dt-request1-annotated.png)
   > 
-  > Lorem ipsum.
+  > Capture between SWITCH1 and SWITCH2. SWITCH1 strips the outer tag, leaving the second tag to be forwarded to SWITCH2.
   >
   > ![](assets/wireshark-dt-request2-annotated.png)
   >
-  > Lorem ipsum.
+  > Capture between SWITCH2 and CENTRAL_SERVER. The request is forwarded to its target in VLAN 20, where the second tag is also removed.
   >
   > ![](assets/wireshark-dt-request3.png)
   >
-  > Lorem ipsum.
+  > Capture between CENTRAL_SERVER and SWITCH2. The target receives the Echo Request, and transmits a reply in response.
   > 
   > ![](assets/wireshark-dt-response1.png)
   >
-  > Lorem ipsum.
+  > Capture between SWITCH2 and SWITCH1. Since the reply came from a VLAN 20 access port, it is tagged before being forwarded to SWITCH1.
   >
   > ![](assets/wireshark-dt-response2-annotated.png)
   >
-  > Lorem ipsum
+  > Capture betweeen SWITCH1 and ATTACKER. The Echo Reply does not know ATTACKER is in VLAN 1, so it never reaches its destination.
   > 
   > ![](assets/wireshark-dt-response3.png)
 </details>
