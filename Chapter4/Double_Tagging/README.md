@@ -139,12 +139,14 @@ As can be seen, the ICMP echo requests never reach CENTRAL_SERVER.
 ![](assets/wireshark-server-segmentation.png)
 
 ## Exploit
-Use Scapy to craft a double-tagged ICMP Echo Request packet. The outer VLAN tag should be set to the native VLAN (`vlan=1`), which will be stripped by the first switch, while the inner tag (`vlan=20`) corresponds to the VLAN of the intended target. This technique allows the packet to traverse VLAN boundaries and reach the destination, effectively bypassing VLAN segmentation controls. However, because the attacker remains on the wrong VLAN, ICMP Echo Replies will not be returned, rendering this a one-way communication exploit.
+Use Scapy to craft a double-tagged ICMP Echo Request packet. The outer VLAN tag should be set to the native VLAN (`vlan=1`), which will be stripped by the first switch, while the inner tag (`vlan=20`) corresponds to the VLAN of the intended target. This technique allows the packet to traverse VLAN boundaries and reach the destination, bypassing segmentation controls. However, because the attacker remains on the wrong VLAN, ICMP Echo Replies will not be returned, rendering this a one-way communication exploit.
 
 <pre>
   >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
   >>> sendp(packet, iface="eth0")
 </pre>
+> Note, for further obfuscation, you can also change the source IP address of the packet.
+> `IP(src=<ip_address>, dst=<ip_address>)`
 
 ![](assets/wireshark-double-tagging.gif)
 
@@ -153,7 +155,7 @@ Use Scapy to craft a double-tagged ICMP Echo Request packet. The outer VLAN tag 
     Closer Examination
   </summary>
 
-  > Capture between ATTACKER and SWITCH1. The crafted packet has two IEE 802.1Q tags as it is sent to the switch.
+  > Capture between ATTACKER and SWITCH1. The crafted packet has two IEEE 802.1Q tags as it is sent to the switch.
   > 
   > ![](assets/wireshark-dt-request1-annotated.png)
   > 
