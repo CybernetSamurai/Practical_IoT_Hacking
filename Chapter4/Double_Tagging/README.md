@@ -4,7 +4,7 @@ Double-tagging is a Layer 2 network attack technique that exploits the behavior 
 > This lab was inspired by *Practical IoT Hacking* (O'Reilly), Chapter 4: **Network Assessments**, Section *"Hopping into the IoT Network"*.
 
 ## Lab Topology
-![](assets/double-tagging-topo.png)
+![Lab Topo](assets/double-tagging-topo.png)
 
 ## Initial Setup
 ### Switch Port Layout
@@ -28,7 +28,7 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 
 **Right-click**, then select `Edit Config` from the context menu.
 
-![](assets/attacker-interfaces.png)
+![Attacker Interfaces](assets/attacker-interfaces.png)
 
 ### Cisco IOS
 **SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
@@ -36,7 +36,7 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 ## Verify Connectivity
 CAMERA_01 should now be able to ping CENTRAL_SERVER
 
-![](assets/camera-server-ping.gif)
+![Camera Ping](assets/camera-server-ping.gif)
 
 
 ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
@@ -44,7 +44,7 @@ ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
   >>> packet = IP(dst='192.168.0.x')/ICMP()
   >>> sr1(packet).show()
 </pre>
-![](assets/attacker-connectivity-verify.gif)
+![Attacker Ping](assets/attacker-connectivity-verify.gif)
 
 ## IOS VLAN Configuration
 
