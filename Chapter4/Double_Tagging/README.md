@@ -34,11 +34,11 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 **SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
 
 ## Verify Connectivity
-CAMERA_01 should now be able to ping CENTRAL_SERVER
+CAMERA_01 should be able to ping CENTRAL_SERVER.
 
 ![Camera Ping](assets/camera-server-ping.gif)
 
-ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
+ATTACKER should be able to ping both CAMERA_01 and CENTRAL_SERVER.
 <pre>
   >>> packet = IP(dst='192.168.0.x')/ICMP()
   >>> sr1(packet).show()
