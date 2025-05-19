@@ -40,7 +40,10 @@ CAMERA_01 should now be able to ping CENTRAL_SERVER
 
 
 ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
-
+<pre>
+  >>> packet = IP(dst='192.168.0.x')/ICMP()
+  >>> sr1(packet).show()
+</pre>
 ![](assets/attacker-connectivity-verify.gif)
 
 ## IOS VLAN Configuration
