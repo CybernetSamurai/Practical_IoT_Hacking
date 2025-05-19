@@ -101,18 +101,18 @@ Configure Et0/0 as static trunk port
   SWITCH1(config-if)# switchport trunk allowed vlan all
   SWITCH1(config-if)# exit
   SWITCH1# show interfaces trunk
-  
-  Port           Mode             Encapsulation  Status        Native vlan
-  Et0/0          on               802.1q         trunking      1
 
-  Port           Vlans allowed on trunk
-  Et0/0          20
+  Port        Mode             Encapsulation  Status        Native vlan
+  Et0/0       on               802.1q         trunking      1
 
-  Port           Vlans allowed and active in management domain
-  Et0/0          20
+  Port        Vlans allowed on trunk
+  Et0/0       1-4094
 
-  Port           Vlans in spanning tree forwarding state and not pruned
-  Et0/0          20
+  Port        Vlans allowed and active in management domain
+  Et0/0       1,20
+
+  Port        Vlans in spanning tree forwarding state and not pruned
+  Et0/0       none
 </pre>
 
 Repeat these step on SWITCH2
