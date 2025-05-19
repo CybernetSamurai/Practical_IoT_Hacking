@@ -46,7 +46,7 @@ ATTACKER should be able to ping both CAMERA_01 and CENTRAL_SERVER.
 ![Attacker Ping](assets/attacker-connectivity-verify.gif)
 
 ## IOS VLAN Configuration
-Create a new VLAN for the IoT camera with an ID of 20. I named it BLUE to match the network topology diagram.
+Create a new VLAN for the IoT devices with an ID of 20. I named it BLUE to match the network topology diagram.
 <pre>
   SWITCH1> enable
   SWITCH1# configure terminal
