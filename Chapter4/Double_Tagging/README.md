@@ -31,7 +31,7 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 ![Attacker Interfaces](assets/attacker-interfaces.png)
 
 ### Cisco IOS
-**SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
+**SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab. They should work as standard switches 'out of the box', no configurations necessary.
 
 ## Verify Connectivity
 CAMERA_01 should be able to ping CENTRAL_SERVER.
