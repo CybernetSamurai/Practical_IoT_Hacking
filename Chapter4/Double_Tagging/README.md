@@ -104,6 +104,7 @@ Configure interface Et0/0 as a static trunk using IEEE 802.1Q encapsulation. Thi
   Port        Vlans in spanning tree forwarding state and not pruned
   Et0/0       none
 </pre>
+> Note how the Native vlan value is 1 by default.
 
 Repeat these step on SWITCH2 to assign CENTRAL_SERVER to VLAN 20.
 
