@@ -38,7 +38,6 @@ CAMERA_01 should now be able to ping CENTRAL_SERVER
 
 ![Camera Ping](assets/camera-server-ping.gif)
 
-
 ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
 <pre>
   >>> packet = IP(dst='192.168.0.x')/ICMP()
@@ -47,17 +46,7 @@ ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
 ![Attacker Ping](assets/attacker-connectivity-verify.gif)
 
 ## IOS VLAN Configuration
-
-Craft a double-tagged ICMP packet with Scapy
-
-<pre>
-  >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
-  >>> sendp(packet, iface="eth0")
-  .
-  Sent 1 packets.
-</pre>
-
-Create new vlan
+Create a new VLAN for the IoT devices with an ID of 20. I named it BLUE to match my network topology diagram.
 <pre>
   SWITCH1> enable
   SWITCH1# configure terminal
@@ -120,6 +109,14 @@ Configure Et0/0 as static trunk port
 
 Repeat these step on SWITCH2
 
+Craft a double-tagged ICMP packet with Scapy
+
+<pre>
+  >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
+  >>> sendp(packet, iface="eth0")
+  .
+  Sent 1 packets.
+</pre>
 
 ## Mitigations
 You can prevent double-tagging attacks by:
