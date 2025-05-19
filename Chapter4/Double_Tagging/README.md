@@ -139,7 +139,7 @@ As can be seen, the ICMP echo requests never reach CENTRAL_SERVER.
 ![](assets/wireshark-server-segmentation.png)
 
 ## Exploit
-Craft a double-tagged ICMP echo request packet with Scapy. The outer tag should reflect the native VLAN to be stripped by the first switch (`vlan=1`), while the inner tag will be where our target resides (`vlan=20`).
+Use Scapy to craft a double-tagged ICMP Echo Request packet. The outer VLAN tag should be set to the native VLAN (`vlan=1`), which will be stripped by the first switch, while the inner tag (`vlan=20`) corresponds to the VLAN of the intended target. This technique allows the packet to traverse VLAN boundaries and reach the destination, effectively bypassing VLAN segmentation controls. However, because the attacker remains on the wrong VLAN, ICMP Echo Replies will not be returned, rendering this a one-way communication exploit.
 
 <pre>
   >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
