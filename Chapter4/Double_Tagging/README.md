@@ -146,6 +146,22 @@ Craft a double-tagged ICMP echo request packet with Scapy. The outer tag should 
   >>> sendp(packet, iface="eth0")
 </pre>
 
+![](assets/wireshark-double-tagging.gif)
+
+<details>
+  <summary>
+    Closer Examination
+  </summary>
+
+  > Start a Wireshark capture on the link between SWITCH1 and SWITCH2. Then, initiate another ping from CAMERA_01 to CENTRAL_SERVER. In the `Packet Details` pane, observe that the switch inserts a 4-byte 802.1Q VLAN tag immediately after the Ethernet header, indicating the frame originated from a VLAN 20 access port.
+  > 
+  > ![Ping VLAN Tag](assets/wireshark-switch1-switch2-annotated.png)
+  > 
+  > As the packet is forwarded to its destination, SWITCH2 removes the VLAN tag before delivering it to the receiving device.
+  >
+  > ![Ping VLAN Tag Removed](assets/wireshark-switch2-server.png)
+</details>
+
 ## Mitigations
 Double tagging attacks can be mitigated by:
 - Setting the native VLAN to an unused VLAN
