@@ -46,7 +46,7 @@ ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
 ![Attacker Ping](assets/attacker-connectivity-verify.gif)
 
 ## IOS VLAN Configuration
-Create a new VLAN for the IoT devices with an ID of 20. I named it BLUE to match my network topology diagram.
+Create a new VLAN for the IoT devices with an ID of 20. I named it BLUE to match the network topology diagram.
 <pre>
   SWITCH1> enable
   SWITCH1# configure terminal
@@ -64,9 +64,8 @@ Create a new VLAN for the IoT devices with an ID of 20. I named it BLUE to match
   20   BLUE                             active
 </pre>
 
-Assign vlan to switchport Et0/1 (CAMERA_01)
+Assign BLUE to switchport Et0/1 (CAMERA_01).
 <pre>
-  SWITCH1> enable
   SWITCH1# configure terminal
   SWITCH1(config)# interface Et0/1
   SWITCH1(config-if)# switchport mode access
@@ -83,9 +82,8 @@ Assign vlan to switchport Et0/1 (CAMERA_01)
   20   BLUE                             active    Et0/1
 </pre>
 
-Configure Et0/0 as static trunk port
+Configure interface Et0/0 as a static trunk using IEEE 802.1Q encapsulation, the industry standard VLAN tagging protocol.
 <pre>
-  SWITCH1> enable
   SWITCH1# configure terminal
   SWITCH1(config)# interface Et0/0
   SWITCH1(config-if)# switchport trunk encapsulation dot1q
@@ -107,7 +105,9 @@ Configure Et0/0 as static trunk port
   Et0/0       none
 </pre>
 
-Repeat these step on SWITCH2
+Repeat these step on SWITCH2 to assign CENTRAL_SERVER to VLAN 20.
+
+## Verify Net Segmentation
 
 Craft a double-tagged ICMP packet with Scapy
 
