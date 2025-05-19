@@ -82,7 +82,7 @@ Assign BLUE to switchport Et0/1 (CAMERA_01).
   20   BLUE                             active    Et0/1
 </pre>
 
-Configure interface Et0/0 as a static trunk using IEEE 802.1Q encapsulation, the industry standard VLAN tagging protocol.
+Configure interface Et0/0 as a static trunk using IEEE 802.1Q encapsulation. This protocol is the industry standard for VLAN tagging.
 <pre>
   SWITCH1# configure terminal
   SWITCH1(config)# interface Et0/0
@@ -107,8 +107,19 @@ Configure interface Et0/0 as a static trunk using IEEE 802.1Q encapsulation, the
 
 Repeat these step on SWITCH2 to assign CENTRAL_SERVER to VLAN 20.
 
-## Verify Net Segmentation
+## Verify Subnet Segmentation
+CAMERA_01 should still be able to ping CENTRAL_SERVER.
 
+![Camera Ping](assets/camera-server-ping.gif)
+
+Assuming the VLAN was configured correctly, ATTACKER should no longer be able to ping CAMERA_01 and CENTRAL_SERVER.
+<pre>
+  >>> packet = IP(dst='192.168.0.x')/ICMP()
+  >>> sr1(packet).show()
+</pre>
+![Attacker Ping](assets/attacker-connectivity-verify.gif)
+
+## Exploit
 Craft a double-tagged ICMP packet with Scapy
 
 <pre>
