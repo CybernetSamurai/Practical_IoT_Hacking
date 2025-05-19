@@ -120,6 +120,15 @@ However, ATTACKER should no longer be able to ping CAMERA_01 or CENTRAL_SERVER.
 </pre>
 ![Attacker Ping Fail](assets/attacker-ping-fail.gif)
 
+<details>
+  <summary>
+    Expand more more test
+  </summary>
+  ![Ping VLAN Tag](assets/wireshark-switch1-switch2-annotated.png)
+  ![Ping VLAN Tag Removed](assets/wireshark-switch2-server.png)
+</details>
+
+
 ## Exploit
 Craft a double-tagged ICMP packet with Scapy
 
