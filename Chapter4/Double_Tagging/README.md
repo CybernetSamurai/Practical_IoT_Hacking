@@ -134,11 +134,9 @@ However, ATTACKER should no longer be able to ping CAMERA_01 or CENTRAL_SERVER.
 </pre>
 ![Attacker Ping Fail](assets/attacker-ping-fail.gif)
 
-As can be seen, the ICMP echo packets never reach CENTRAL_SERVER.
+As can be seen, the ICMP echo requests never reach CENTRAL_SERVER.
 
 ![](assets/wireshark-server-segmentation.png)
-
-
 
 ## Exploit
 Craft a double-tagged ICMP packet with Scapy
