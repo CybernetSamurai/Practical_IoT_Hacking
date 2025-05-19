@@ -6,8 +6,7 @@ Double-tagging is a Layer 2 network attack technique that exploits the behavior 
 ## Lab Topology
 ![](assets/double-tagging-topo.png)
 
-## Setup
-
+## Initial Setup
 ### Switch Port Layout
 | Switch   | Port    | Connected Device | VLAN    | Port Mode             |
 |----------|---------|------------------|---------|-----------------------|
@@ -34,16 +33,17 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 ### Cisco IOS
 **SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab.
 
-### Verify
-
+## Verify Connectivity
 CAMERA_01 should now be able to ping CENTRAL_SERVER
 
 ![](assets/camera-server-ping.gif)
 
 
-ATTACKER should be able to ping CAMERA_01 or CENTRAL_SERVER due to network segmentation
+ATTACKER should be able to ping CAMERA_01 and CENTRAL_SERVER
 
 ![](assets/attacker-ping.gif)
+
+## IOS VLAN Configuration
 
 Craft a double-tagged ICMP packet with Scapy
 
