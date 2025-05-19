@@ -6,6 +6,7 @@
 ## Initial Setup
 ### Switch Port Layout
 | Switch  | Port  | Connected Device | VLAN    | Port Mode       |
+|---------|-------|------------------|---------|-----------------|
 | SWITCH1 | Fa0/0 | SWITCH2          | N/A     | Trunk (Dynamic) |
 | SWITCH1 | Fa0/1 | CAMERA_01        | VLAN 20 | Access          |
 | SWITCH1 | Fa0/2 | ATTACKER         | VLAN 10 | Access          |
