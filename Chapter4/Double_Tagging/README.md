@@ -115,7 +115,7 @@ Assuming the VLAN was configured correctly, CAMERA_01 should still be able to pi
 
 <details>
   <summary>
-    > VLAN Tag Removal Demonstrated...
+    VLAN Tag Removal Demonstrated...
   </summary>
 
   > Start a Wireshark capture on the link between SWITCH1 and SWITCH2. Then, initiate another ping from CAMERA_01 to CENTRAL_SERVER. In the `Packet Details` pane, observe that the switch inserts a 4-byte 802.1Q VLAN tag immediately after the Ethernet header, indicating the frame originated from a VLAN 20 access port.
