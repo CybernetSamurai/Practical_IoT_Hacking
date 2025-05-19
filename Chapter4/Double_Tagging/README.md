@@ -108,11 +108,11 @@ Configure interface Et0/0 as a static trunk using IEEE 802.1Q encapsulation. Thi
 Repeat these step on SWITCH2 to assign CENTRAL_SERVER to VLAN 20.
 
 ## Verify Subnet Segmentation
-CAMERA_01 should still be able to ping CENTRAL_SERVER.
+Assuming the VLAN was configured correctly, CAMERA_01 should still be able to ping CENTRAL_SERVER...
 
 ![Camera Ping](assets/camera-server-ping.gif)
 
-Assuming the VLAN was configured correctly, ATTACKER should no longer be able to ping CAMERA_01 and CENTRAL_SERVER.
+However, ATTACKER should no longer be able to ping CAMERA_01 or CENTRAL_SERVER.
 <pre>
   >>> packet = IP(dst='192.168.0.x')/ICMP()
   >>> sr1(packet).show()
