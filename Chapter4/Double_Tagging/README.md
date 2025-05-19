@@ -113,6 +113,20 @@ Assuming the VLAN was configured correctly, CAMERA_01 should still be able to pi
 
 ![Camera Ping](assets/camera-server-ping.gif)
 
+<details>
+  <summary>
+    VLAN Tag Removal Demonstrated...
+  </summary>
+
+  > Start a Wireshark capture on the link between SWITCH1 and SWITCH2. Then, initiate another ping from CAMERA_01 to CENTRAL_SERVER. In the `Packet Details` pane, observe that the switch inserts a 4-byte 802.1Q VLAN tag immediately after the Ethernet header, indicating the frame originated from a VLAN 20 access port.
+  > 
+  > ![Ping VLAN Tag](assets/wireshark-switch1-switch2-annotated.png)
+  > 
+  > As the packet is forwarded to its destination, SWITCH2 removes the VLAN tag before delivering it to the receiving device.
+  >
+  > ![Ping VLAN Tag Removed](assets/wireshark-switch2-server.png)
+</details>
+
 However, ATTACKER should no longer be able to ping CAMERA_01 or CENTRAL_SERVER.
 <pre>
   >>> packet = IP(dst='192.168.0.x')/ICMP()
@@ -120,13 +134,10 @@ However, ATTACKER should no longer be able to ping CAMERA_01 or CENTRAL_SERVER.
 </pre>
 ![Attacker Ping Fail](assets/attacker-ping-fail.gif)
 
-<details>
-  <summary>
-    Expand more more test
-  </summary>
-  ![Ping VLAN Tag](assets/wireshark-switch1-switch2-annotated.png)
-  ![Ping VLAN Tag Removed](assets/wireshark-switch2-server.png)
-</details>
+As can be seen, the ICMP echo packets never reach CENTRAL_SERVER.
+
+![](assets/wireshark-server-segmentation.png)
+
 
 
 ## Exploit
