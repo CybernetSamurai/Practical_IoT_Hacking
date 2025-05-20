@@ -32,7 +32,7 @@ Enable remote management
   Switch(config-line)# no login
   Switch(config-line)# transport input telnet
   Switch(config-line)# enable password [passowrd]
-  Switch(config-line)# exit
+  Switch(config)# exit
 </pre>
 
 ## Verify Connectivity
