@@ -31,7 +31,8 @@ Enable remote management
   Switch(config)# line vty 0 4
   Switch(config-line)# no login
   Switch(config-line)# transport input telnet
-  Switch(config-line)# enable password [passowrd]
+  Switch(config-line)# exit
+  Switch(config)# enable password [passowrd]
   Switch(config)# exit
 </pre>
 
