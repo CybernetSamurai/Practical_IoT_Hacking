@@ -1,7 +1,7 @@
 # VLAN Hopping: Switch Spoofing
 
 ## Lab Topology
-![](assets/net-topo.png)
+![](assets/lab-topo.png)
 
 ## Initial Setup
 ### Switch Port Layout
