@@ -11,11 +11,11 @@ Switch spoofing is a VLAN hopping technique that abuses Dynamic Trunking Protoco
 | Switch  | Port  | Connected Device | VLAN    | Port Mode       |
 |---------|-------|------------------|---------|-----------------|
 | SWITCH1 | Fa0/0 | SWITCH2          | N/A     | Trunk (Dynamic) |
-| SWITCH1 | Fa0/1 | ATTACKER         | VLAN 20 | Access          |
-| SWITCH1 | Fa0/2 | CAMERA_01        | VLAN 10 | Access          |
+| SWITCH1 | Fa0/1 | ATTACKER         | VLAN 10 | Access          |
+| SWITCH1 | Fa0/2 | CAMERA_01        | VLAN 20 | Access          |
 | SWITCH2 | Fa0/0 | SWITCH1          | N/A     | Trunk (Dynamic) |
-| SWITCH2 | Fa0/1 | GUEST_LAPTOP     | VLAN 20 | Access          |
-| SWITCH2 | Fa0/2 | CAMERA_02        | VLAN 10 | Access          |
+| SWITCH2 | Fa0/1 | GUEST_LAPTOP     | VLAN 10 | Access          |
+| SWITCH2 | Fa0/2 | CAMERA_02        | VLAN 20 | Access          |
 
 ### Enabling telnet on Cisco switch
 Configure management IP
