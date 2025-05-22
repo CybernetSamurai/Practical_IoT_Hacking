@@ -4,7 +4,7 @@ Double tagging is a Layer 2 network attack technique that exploits the behavior 
 > This lab was inspired by *Practical IoT Hacking* (O'Reilly), Chapter 4: **Network Assessments**, Section *"Hopping into the IoT Network"*. It assumes basic knowledge of GNS3 and networking.
 
 ## Lab Topology
-![Lab Topo](assets/double-tagging-topo.png)
+![Lab Topo](assets/lab-topo.png)
 
 ## Initial Setup
 ### Switch Port Layout
