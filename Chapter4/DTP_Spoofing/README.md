@@ -18,7 +18,7 @@ Switch spoofing is a VLAN hopping technique that abuses Dynamic Trunking Protoco
 | SWITCH2 | Fa0/2 | CAMERA_02        | VLAN 20 | Access          |
 
 ### VPCS Static IPv4 Configuration
-To keep the lab simple, both **CAMERA_01** and **CENTRAL_SERVER** are implemented using [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (Virtual PC Simulator) appliances. This provides a lightweight way to simulate basic IoT device connectivity within the network. The following command assigns an IP address and saves it across reboots.
+To keep the lab simple, both **CAMERA_01** and **CAMERA_02** are implemented using [VPCS](https://docs.gns3.com/docs/emulators/vpcs/) (Virtual PC Simulator) appliances. This provides a lightweight way to simulate basic IoT device connectivity within the network. The following commands assign an IP address and saves it across reboots.
 <pre>
   VPCS> ip 192.168.0.x/24
   VPCS> save
@@ -33,6 +33,8 @@ The **ATTACKER** machine is a Docker container. The imaged used in this lab is [
 
 ### Cisco IOS
 **SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab. They should work as standard switches 'out of the box', no configurations necessary. Note that since these are virtualized appliances, they may not behave exactly like their hardware counterparts.
+
+## Verify Connectivity
 
 ### Enabling telnet on Cisco switch
 Configure management IP
@@ -55,8 +57,6 @@ Enable remote management
   Switch(config)# enable password [passowrd]
   Switch(config)# exit
 </pre>
-
-## Verify Connectivity
 
 ## IOS VLAN Configuration
 
