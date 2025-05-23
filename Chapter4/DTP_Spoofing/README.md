@@ -84,11 +84,9 @@ Assign RED to switchport Et0/1 (ATTACKER) and BLUE to Et0/2 (CAMERA_01).
 <pre>
   SWITCH1# configure terminal
   SWITCH1(config)# interface Et0/1
-  SWITCH1(config-if)# switchport mode access
   SWITCH1(config-if)# switchport access vlan 10
   SWITCH1(config-if)# exit
   SWITCH1(config)# interface Et0/2
-  SWITCH1(config-if)# switchport mode access
   SWITCH1(config-if)# switchport access vlan 20
   SWITCH1(config-if)# CTRL+Z
   SWITCH1# show vlan brief
@@ -105,13 +103,29 @@ Assign RED to switchport Et0/1 (ATTACKER) and BLUE to Et0/2 (CAMERA_01).
 
 Repeat these step on SWITCH2 to assign GUEST_LAPTOP to VLAN 10 and CAMERA_02 to VLAN 20.
 
+### DTP Configuration
 Try to ping CAMERA_02 from CAMERA_02.
 
 ![Ping fail](assets/no-trunk-ping.png)
 
-### DTP Configuration
+By default, Cisco switches use DTP to negotiate trunk links. However, most switchports are set to `dynamic auto`, which means they will listen for DTP packets but will not initiate trunk formation. As a result, when both connected ports are in dynamic auto mode, no trunk is established. To enable trunking between SWITCH1 and SWITCH2, at least one side must be configured as `dynamic desirable`, which actively sends DTP packets and initiates the trunk negotiation.
+<pre>
+  SWITCH1# show interfaces Et0/0 switchport | include Name|Administrative Mode
+  
+  Name: Et0/0
+  Administrative Mode: dynamic auto
+</pre>
 
-By default, Cisco switches are set to dynamically build trunk links when DTP packets are seen on the wire.
+Configure SWITCH1 to negotiate a trunk link with SWITCH2.
+<pre>
+  SWITCH1(config)# interface Et0/0
+  SWITCH1(config-if)# switchport mode dynamic desirable
+  SWITCH1(config-if)# CTRL+Z
+  SWITCH1# show interfaces Et0/0 switchport | include Name|Administrative Mode
+
+  Name: Et0/0
+  Administrative Mode: dynamic desirable
+</pre>
 
 ## Verify Subnet Segmentation
 
