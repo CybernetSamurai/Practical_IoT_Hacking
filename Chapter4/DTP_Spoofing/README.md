@@ -106,7 +106,7 @@ Repeat these step on SWITCH2 to assign GUEST_LAPTOP to VLAN 10 and CAMERA_02 to 
 ### DTP Configuration
 Try to ping CAMERA_02 from CAMERA_02.
 
-![Ping fail](assets/no-trunk-ping.png)
+![Ping fail](assets/no-trunk-ping.gif)
 
 By default, Cisco switches use DTP to negotiate trunk links. However, most switchports are set to `dynamic auto`, which means they will listen for DTP packets but will not initiate trunk formation. As a result, when both connected ports are in dynamic auto mode, no trunk is established. To enable trunking between SWITCH1 and SWITCH2, at least one side must be configured as `dynamic desirable`, which actively sends DTP packets and initiates the trunk negotiation.
 <pre>
