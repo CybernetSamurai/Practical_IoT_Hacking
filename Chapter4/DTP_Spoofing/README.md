@@ -181,7 +181,17 @@ The default interface is set to `STP mode`. Press `G` to bring up a list of prot
 
 ![DTP attack](assets/yersinia-dtp-attack.gif)
 
-While this is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into.
+In SWITCH1, we should see that Et0/1 is now a second trunk port.
+<pre>
+  SWITCH1# show interfaces status
+  
+  Port      Name               Status       Vlan       Duplex  Speed Type
+  Et0/0                        connected    trunk        auto   auto unknown
+  Et0/1                        connected    trunk        auto   auto unknown
+  Et0/2                        connected    20           auto   auto unknown
+</pre>
+
+While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into.
 
 ![Dot1q sniffing](assets/dot1q-sniffing.gif)
 
