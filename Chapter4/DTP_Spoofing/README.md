@@ -119,6 +119,7 @@ By default, Cisco switches use DTP to negotiate trunk links. However, most switc
 Configure SWITCH1 to negotiate a trunk link with SWITCH2.
 <pre>
   SWITCH1(config)# interface Et0/0
+  SWITCH1(config-if)# switchport trunk encapsulation dot1q
   SWITCH1(config-if)# switchport mode dynamic desirable
   SWITCH1(config-if)# CTRL+Z
   SWITCH1# show interfaces Et0/0 switchport | include Name|Administrative Mode
@@ -127,7 +128,35 @@ Configure SWITCH1 to negotiate a trunk link with SWITCH2.
   Administrative Mode: dynamic desirable
 </pre>
 
+Verify that Et0/0 is trunking our VLANs.
+<pre>
+  SWITCH1# show interfaces trunk
+  
+  Port        Mode             Encapsulation  Status        Native vlan
+  Et0/0       desirable        802.1q         trunking      1
+
+  Port        Vlans allowed on trunk
+  Et0/0       1-4094
+
+  Port        Vlans allowed and active in management domain
+  Et0/0       1,10,20
+
+  Port        Vlans in spanning tree forwarding state and not pruned
+  Et0/0       1,10,20
+</pre>
+
 ## Verify Subnet Segmentation
+If configured correctly, CAMERA_01 can ping CAMERA_02...
+
+![Verify BLUE Ping](assets/camera1-ping-camera2.gif)
+
+ATTACKER can ping GUEST_LAPTOP...
+
+![Verify RED Ping](assets/attacker-ping-guest.gif)
+
+But ATTACKER cannot ping either camera...
+
+![Attacker Ping Fail](assets/attacker-ping-fail.gif)
 
 ## Exploit
 ### Configuring VLAN Interfaces in Linux
