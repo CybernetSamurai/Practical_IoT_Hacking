@@ -146,7 +146,7 @@ Verify that Et0/0 is trunking our VLANs.
 </pre>
 
 ## Verify Subnet Segmentation
-If configured correctly, CAMERA_01 can ping CAMERA_02...
+If configured correctly, CAMERA_01 can now ping CAMERA_02...
 
 ![Verify BLUE Ping](assets/camera1-ping-camera2.gif)
 
