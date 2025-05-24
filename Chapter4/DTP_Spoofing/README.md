@@ -49,11 +49,6 @@ ip --color --family inet address show
 >       valid_lft forever preferred_lft forever
 ></pre>
 
-```
-apt update && apt -y install yersinia iproute2 inetutils-ping kmod vlan
-apt install linux-modules-$(uname -r)
-```
-
 ### Cisco IOS
 **SWITCH1** and **SWITCH2** are virtual Cisco IOS Layer 2 devices. You can use either the IOSvL2 or IOU L2 GNS3 appliance templates for this lab. They should work as standard switches 'out of the box', no configurations necessary. Note that since these are virtualized appliances, they may not behave exactly like their hardware counterparts.
 
@@ -159,7 +154,38 @@ But ATTACKER cannot ping either camera...
 ![Attacker Ping Fail](assets/attacker-ping-fail.gif)
 
 ## Exploit
-### Configuring VLAN Interfaces in Linux
+### Yersinia
+[Yersinia](https://github.com/tomac/yersinia) is a framework for performing layer 2 attacks. It supports multiple protocols including STP, CDP, DHCP, HSRP, VTP, ISL, and 802.1x. However, we will be taking a closer look at its DTP forging and 802.1q sniffing capabilities. This tool can be downloaded with the following command, although it should be installed by default on Kali:
+```
+apt -y install yersinia
+```
+
+In SWITCH1, lets verify the current status of our interfaces.
+<pre>
+  SWITCH1# show interfaces status
+  
+  Port      Name               Status       Vlan       Duplex  Speed Type
+  Et0/0                        connected    trunk        auto   auto unknown
+  Et0/1                        connected    10           auto   auto unknown
+  Et0/2                        connected    20           auto   auto unknown
+</pre>
+As expected, we currently have two access ports and one trunk port.
+
+Spawn a new terminal session in ATTACKER and start Yersinia in `Interactive mode`.
+```
+yersinia -I
+```
+> By default, `eth0` will likely be selected as the default interface. If this is not correct, press `I` to bring up a list of interfaces, and toggle the correct one.
+
+The default interface is set to `STP mode`. Press `G` to bring up a list of protocols, navigate to `DTP` and press `ENTER`. To start a switch spoofing attack, press `X` and select `1`. You should quickly start to see DTP packets being caputerd negotation a trunk connection.
+
+![DTP attack](assets/yersinia-dtp-attack.gif)
+
+While this is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into.
+
+![Dot1q sniffing](assets/dot1q-sniffing.gif)
+
+### Creating VLAN Interfaces in Linux
 <pre>
   apt install vlan
   modprobe 8021q
