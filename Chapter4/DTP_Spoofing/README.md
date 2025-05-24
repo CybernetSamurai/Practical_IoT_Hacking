@@ -191,9 +191,11 @@ In SWITCH1, we should see that Et0/1 is now a second trunk port.
   Et0/2                        connected    20           auto   auto unknown
 </pre>
 
-While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into.
+While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into. Alternatively, you can open Wireshark, filter for `vlan.id` and see this same trafic as shown below:
 
-![Dot1q sniffing](assets/dot1q-sniffing.gif)
+![Wireshark VLAN Traffic](assets/wireshark-vlan-traffic.gif)
+
+![Wireshark VLAN ARP](assets/wireshark-vlan-arp.png)
 
 ### Creating VLAN Interfaces in Linux
 <pre>
