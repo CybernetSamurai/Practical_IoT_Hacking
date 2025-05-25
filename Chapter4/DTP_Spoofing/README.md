@@ -59,8 +59,7 @@ Create two new VLANs: one for the workstations (10) and another for the 'IoT' de
   SWITCH1# configure terminal
   SWITCH1(config)# vlan 10
   SWITCH1(config-vlan)# name RED
-  SWITCH1(config-vlan)# exit
-  SWITCH1(config)# vlan 20
+  SWITCH1(config-vlan)# vlan 20
   SWITCH1(config-vlan)# name BLUE
   SWITCH1(config-vlan)# CTRL+Z
   SWITCH1# show vlan brief
@@ -80,8 +79,7 @@ Assign RED to switchport Et0/1 (ATTACKER) and BLUE to Et0/2 (CAMERA_01).
   SWITCH1# configure terminal
   SWITCH1(config)# interface Et0/1
   SWITCH1(config-if)# switchport access vlan 10
-  SWITCH1(config-if)# exit
-  SWITCH1(config)# interface Et0/2
+  SWITCH1(config-if)# interface Et0/2
   SWITCH1(config-if)# switchport access vlan 20
   SWITCH1(config-if)# CTRL+Z
   SWITCH1# show vlan brief
