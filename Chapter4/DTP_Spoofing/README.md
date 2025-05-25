@@ -189,7 +189,7 @@ In SWITCH1, we should see that Et0/1 is now a second trunk port.
   Et0/2                        connected    20           auto   auto unknown
 </pre>
 
-While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that the attacker is functioning as a trunk, it should begin receiving tagged broadcast traffic from each VLAN. This will help identify which VLANs are active on the network to later hop into. If you are not seeing anything, try generating ARP broadcasts from any VPCS by pinging random IP addresses. Alternatively, you can open Wireshark, filter for `vlan.id` and see the same trafic as shown below:
+While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that the attacker's port is functioning as a trunk, it should begin receiving tagged broadcast traffic from each VLAN. This will help identify which VLANs are active on the network to later hop into. If you are not seeing anything, try generating ARP broadcasts from any VPCS by pinging random IP addresses. Alternatively, you can open Wireshark, filter for `vlan.id` and see the same trafic as shown below:
 
 ![Wireshark VLAN Traffic](assets/wireshark-vlan-traffic.gif)
 
