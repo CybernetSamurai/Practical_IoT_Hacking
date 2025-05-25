@@ -177,7 +177,7 @@ yersinia -I
 ```
 > By default, `eth0` will likely be selected as the default interface. If this is not correct, press `I` to bring up a list of interfaces, and toggle the correct one.
 
-The default interface is set to `STP mode`. Press `G` to bring up a list of protocols, navigate to `DTP` and press `ENTER`. To start a switch spoofing attack, press `X` and select `1`. You should quickly start to see DTP packets being caputerd negotation a trunk connection.
+The default view is set to `STP mode`. Press `G` to bring up a list of protocols, navigate to `DTP` and press `ENTER`. To start a switch spoofing attack, press `X` and select `1`. You should quickly start to see DTP packets establishing a new trunk connection.
 
 ![DTP attack](assets/yersinia-dtp-attack.gif)
 
@@ -191,7 +191,7 @@ In SWITCH1, we should see that Et0/1 is now a second trunk port.
   Et0/2                        connected    20           auto   auto unknown
 </pre>
 
-While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into. Alternatively, you can open Wireshark, filter for `vlan.id` and see this same trafic as shown below:
+While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that we are a "trunk" accepting all VLANs, we should start seeing tagged broadcast traffic from each VLAN. This will help us identify which VLANs are on the network which we can later hop into. If you are not seeing anything, try to generate ARP broadcast traffic from any VPCS by pinging random IP addresses. Alternatively, you can open Wireshark, filter for `vlan.id` and see this same trafic as shown below:
 
 ![Wireshark VLAN Traffic](assets/wireshark-vlan-traffic.gif)
 
@@ -221,7 +221,7 @@ While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that w
 
 From this output, ATTACKER can identify that the switch has been configured with at least three VLANs: 1, 10, and 20. Using this information, they can now formulate a plan to bypass these security restrictions.
 
-### Creating VLAN Interfaces in Linux
+### Creating VLAN Interfaces in Kali
 Under normal circumstances, VLAN tagging is managed by switches: access ports add tags to ingress packets and strip them from egress packets. As a result, end devices are typically unaware of their VLAN assignment and do not need to handle tagging themselves. However, in this case the attacker is masquerading as a switch on a trunk link, which requires all outbound traffic to be explicitly tagged to reach its target VLAN. Linux supports the creation of virtual subinterfaces to allow the hacker to inject pre-tagged packets into specific VLANs as if they were from a legitimate switch.
 
 If not done, install the `vlan` package.
@@ -274,6 +274,16 @@ ip --color --family inet address show
 >         valid_lft forever preferred_lft forever
 ></pre>
 
+### Hopping the VLANs
+With the subinterfaces created, ATTACKER can now communicate with any device on the network. From here they could pivot to more advanced techniques such as enumeration, exploitation, priv escalation, etc. Lets test this free rein access with `ping`.
 
+From ATTACKER, ping GUEST_LAPTOP. If you are receiving a `Destination Host Unreachable` message, ensure that Yersinia is still running in another terminal session. A trunk link must be established for this to work.
+
+![Kali Ping VLAN10](assets/kali-ping-guest.gif)
+
+![Kali Ping VLAN20](assets/kali-ping-camera1.gif)
+
+![Kali Scan VLAN20](assets/kali-scan-camera2.gif)
 
 ## Mitigations
+- Disable negotiations on all user-facing switchports.
