@@ -1,5 +1,5 @@
 # VLAN Hopping: Switch Spoofing (2025.05)
-Switch spoofing is a VLAN hopping technique that abuses Dynamic Trunking Protocol (DTP), a Cisco proprietary protocol used to automatically negotiate trunk links between switches. In this attack, an adversary connects a device to an access port on a switch and configures their interface to actively participate in DTP negotiations. If the switch port is configured to negotiate (which is enabled by default), the attacker's device can spoof itself as a switch by sending forged DTP packets. This can trick the legitimate switch into establishing a trunk link, allowing the attacker to receive traffic from multiple VLANs, including those they shouldn’t have access to. Once a trunk is established, the attacker can craft and analyze 802.1Q-tagged packets, making it possible to launch further attacks or passively eavesdrop on inter-VLAN traffic. This vulnerability can be mitigated by disabling DTP on all client-facing switch ports.
+Switch spoofing is a VLAN hopping technique that abuses Dynamic Trunking Protocol (DTP), a Cisco proprietary protocol used to automatically negotiate trunk links between switches. In this attack, an adversary connects a device to an access port on a switch and configures their interface to actively participate in DTP negotiations. If the switch port is configured to negotiate (which is enabled by default), the attacker's device can spoof itself as a switch by sending forged DTP packets. This can trick the legitimate switch into establishing a trunk link, allowing the attacker to receive traffic from multiple VLANs, including those they shouldn’t have access to. Once a trunk is established, the attacker can launch further attacks or passively eavesdrop on inter-VLAN traffic. This vulnerability can be mitigated by disabling DTP on all client-facing switch ports.
 
 > This lab was inspired by *Practical IoT Hacking* (O'Reilly), Chapter 4: **Network Assessments**, Section *"Hopping into the IoT Network"*. It assumes basic knowledge of GNS3 and networking.
 
@@ -25,7 +25,7 @@ To keep the lab simple, both **CAMERA_01**, **CAMERA_02**, and **GUEST_LAPTOP** 
 </pre>
 
 ### Kali Static IPv4 Configuration
-The **ATTACKER** machine is a Kali linux VM running the default [VirtualBox image](https://www.kali.org/get-kali/#kali-virtual-machines). This gives us access to most of the tools needed for these labs and will be reused in the future. Below shows the steps for configuring static IP addresses using CLI:
+The **ATTACKER** machine is a Kali linux VM running the default [VirtualBox OVA](https://www.kali.org/get-kali/#kali-virtual-machines). This gives us access to most of the tools needed for these labs and will be reused in the future. Below shows the steps for configuring static IP addresses using CLI:
 > Note: The shortcut for spawning a terminal in linux is `CTL+ALT+T`
 
 Remove any existing configs
