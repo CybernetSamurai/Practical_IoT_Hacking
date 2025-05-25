@@ -292,7 +292,7 @@ Just to demonstrate the potential to pivot to other attacks, scan a port on CAME
 ![Kali Scan VLAN20](assets/kali-scan-camera2.png)
 
 ## Mitigations
-This attack can be mitigated by disabling automatic trunk negotiations on all user-facing switch ports. You can test this yourself by applying the following configurations [when assigning VLANs to interfaces](https://github.com/CybernetSamurai/Practical_IoT_Hacking/blob/main/Chapter4/DTP_Spoofing/README.md#ios-vlan-configuration).
+This attack can be mitigated by disabling automatic trunk negotiations on all user-facing switch ports. You can test this yourself by applying the following configurations [when assigning VLANs to interfaces](README.md#ios-vlan-configuration).
 <pre>
   SWITCH(config-if)# switchport mode access
   SWITCH(config-if)# switchport nonegotiate
