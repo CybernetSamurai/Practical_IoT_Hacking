@@ -25,7 +25,7 @@ To keep the lab simple, both **CAMERA_01**, **CAMERA_02**, and **GUEST_LAPTOP** 
 </pre>
 
 ### Kali Static IPv4 Configuration
-The **ATTACKER** machine is a Kali linux VM running the default [VirtualBox OVA](https://www.kali.org/get-kali/#kali-virtual-machines). This gives us access to most of the tools needed for these labs and will be reused in the future. Below shows the steps for configuring static IP addresses using CLI:
+The **ATTACKER** machine is a Kali linux VM running the default [VirtualBox VDI](https://www.kali.org/get-kali/#kali-virtual-machines). This gives us access to most of the tools needed for these labs and will be reused in the future. Below shows the steps for configuring static IP addresses using CLI:
 > Note: The shortcut for spawning a terminal in linux is `CTL+ALT+T`
 
 Remove any existing configs
