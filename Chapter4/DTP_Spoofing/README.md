@@ -206,10 +206,14 @@ While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that w
   >
   > ![Wireshark Preferences](assets/wireshark-preferences.png)
   >
-  > 
+  > In this instance, we want to see the VLAN IDs of tagged packets through the network. So, I will title the new column `VLAN`, set its type to `Custom`, and use `vlan.id` as the field value. Other attributes, such as width and alignment can be adjusted as necessary. I typically set width to `-1` (auto adjust) and alignment to `Left`. Field occurances specifies which instance of a field to use if that field appears multiple times in a single packet. For example, you could see multiple `vlan.id` fields in double tagged packets for VLAN hopping. `0` represents the first occurance, `1` for the second occurance, etc. Here, I leave this value at `0` (default).
+  >
+  > ![VLAN Column](assets/wireshark-vlan-column.png)
+  >  
+  > ![Wireshark VLAN ARP](assets/wireshark-vlan-arp.png)
 </details>
 
-![Wireshark VLAN ARP](assets/wireshark-vlan-arp.png)
+
 
 ### Creating VLAN Interfaces in Linux
 <pre>
