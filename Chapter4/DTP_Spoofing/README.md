@@ -202,30 +202,78 @@ While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that w
 
   > From the `Edit` dropdown menu, select `Preferences...`
   >
-  > Select `Columns`, then `+` to add a new data column
+  > Navigate to `Appearance -> Columns`, then click the `+` button to add a new data column.
   >
   > ![Wireshark Preferences](assets/wireshark-preferences.png)
   >
-  > In this instance, we want to see the VLAN IDs of tagged packets through the network. So, I will title the new column `VLAN`, set its type to `Custom`, and use `vlan.id` as the field value. Other attributes, such as width and alignment can be adjusted as necessary. I typically set width to `-1` (auto adjust) and alignment to `Left`. Field occurances specifies which instance of a field to use if that field appears multiple times in a single packet. For example, you could see multiple `vlan.id` fields in double tagged packets for VLAN hopping. `0` represents the first occurance, `1` for the second occurance, etc. Here, I leave this value at `0` (default).
+  > In this example, we want to display the VLAN IDs of tagged packets. Name the new column `VLAN`, set the **Type** to `Custom`, and enter `vlan.id` for the **Field**.
   >
-  > ![VLAN Column](assets/wireshark-vlan-column.png)
-  >  
+  > Other attributes, such as **Width** and **Alignment** can be adjusted as necessary. I recommend setting Width to `-1` (auto adjust) and Alignment to `Left` for readability.
+  >
+  > The **Field Occurances** settings controls which instance of the field is displayed when multiple instacnes are present. For example, you could see multiple `vlan.id` fields in double tagged packets for VLAN hopping. A value of `0` represents the first occurance, `1` for the second, etc. In most cases, leaving this at `0` is fine.
+  >
+  > ![VLAN Column](assets/wireshark-new-column.png)
+  >
+  > After clicking `Apply`, you should see a new `VLAN` column in your packet view. This can be toggled on or off as needed. Below is an example of 802.1Q-tagged ARP broadcast frames. Notice how we can now quickly recognize which VLANs these frames originated from.
+  > 
   > ![Wireshark VLAN ARP](assets/wireshark-vlan-arp.png)
 </details>
 
-
+From this output, ATTACKER can identify that the switch has been configured with at least three VLANs: 1, 10, and 20. Using this information, they can now formulate a plan to bypass these security restrictions.
 
 ### Creating VLAN Interfaces in Linux
-<pre>
-  apt install vlan
-  modprobe 8021q
-  lsmod | grep 8021q
-  ip link add link eth0 name eth0.10 type vlan id 10
-  ip link add link eth0 name eth0.20 type vlan id 20
-  ip address add 192.168.0.1/24 dev eth0.10
-  ip address add 192.168.0.1/24 dev eth0.20
-  ip link set dev eth0.10 up
-  ip link set dev eth0.20 up
-</pre>
+Under normal circumstances, VLAN tagging is managed by switches: access ports add tags to ingress packets and strip them from egress packets. As a result, end devices are typically unaware of their VLAN assignment and do not need to handle tagging themselves. However, in this case the attacker is masquerading as a switch on a trunk link, which requires all outbound traffic to be explicitly tagged to reach its target VLAN. Linux supports the creation of virtual subinterfaces to allow the hacker to inject pre-tagged packets into specific VLANs as if they were from a legitimate switch.
+
+If not done, install the `vlan` package.
+```
+apt -y install vlan
+```
+
+Load the `8021q` kernel module for VLAN tagging.
+```
+modprobe 8021q
+```
+> Note: no output means that the command was succesful, but the command `lsmod | grep 8021q` can verify this. The output should look like the following:
+> <pre>
+>   8021q                  53248  0
+>   garp                   16384  1 8021q
+>   mrp                    20480  1 8021q
+> </pre>
+
+Create a subinterface for VLAN 10, assign an unused IPv4 address, and change the interface state to `UP`.
+```
+ip link add link eth0 name eth0.10 type vlan id 10 && \
+ip address add 192.168.0.5/24 dev eth0.10 && \
+ip link set dev eth0.10 up
+```
+> Note: subinterfaces can be deleted with the command `ip link delete <iface_name>`
+
+Repeat for VLAN 20.
+```
+ip link add link eth0 name eth0.20 type vlan id 20 && \
+ip address add 192.168.0.6/24 dev eth0.20 && \
+ip link set dev eth0.20 up
+```
+
+Verify both interfaces were successfully created.
+```
+ip --color --family inet address show
+```
+><pre>
+>  1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+>      inet 127.0.0.1/8 scope host lo
+>         valid_lft forever preferred_lft forever
+>  2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+>      inet 192.168.0.1/24 scope global eth0
+>         valid_lft forever preferred_lft forever
+>  3: eth0.10@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+>      inet 192.168.0.5/24 scope global eth0.10
+>         valid_lft forever preferred_lft forever
+>  4: eth0.20@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+>      inet 192.168.0.6/24 scope global eth0.20
+>         valid_lft forever preferred_lft forever
+></pre>
+
+
 
 ## Mitigations
