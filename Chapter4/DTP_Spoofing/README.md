@@ -175,7 +175,7 @@ yersinia -I
 ```
 > By default, `eth0` will likely be selected as the default interface. If this is not correct, press `I` to bring up a list of interfaces, and toggle the correct one.
 
-The default view is set to `STP mode`. Press `G` to open the protocol selection menu, navigate to `DTP` and press `ENTER`. To start a switch spoofing attack, press `X` and select `1`. You should quickly begin seeing DTP packets as the switch negotiates a trunk link. In Wireshark, you can use the filter `dtp.tos == 0x1` to display only DTP packets with a *Trunk Operating Status* of  `Trunk` (`0x1`), rather than `Access` (`0x0`). This shows us the exact momeent when the trunk is established.
+The default view is set to `STP mode`. Press `G` to open the protocol selection menu, navigate to `DTP` and press `ENTER`. To start a switch spoofing attack, press `X` and select `1`. You should quickly begin seeing DTP packets as the switch negotiates a trunk link. In Wireshark, you can use the filter `dtp.tos == 0x1` to display only DTP packets with a *Trunk Operating Status* of  `Trunk` (`0x1`), rather than `Access` (`0x0`). This shows us the exact moment when the trunk is established.
 
 ![DTP attack](assets/yersinia-dtp-attack.gif)
 
