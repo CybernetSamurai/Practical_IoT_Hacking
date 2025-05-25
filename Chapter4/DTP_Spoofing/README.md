@@ -99,7 +99,7 @@ Assign RED to switchport Et0/1 (ATTACKER) and BLUE to Et0/2 (CAMERA_01).
 Repeat these step on SWITCH2 to assign GUEST_LAPTOP to VLAN 10 and CAMERA_02 to VLAN 20.
 
 ### DTP Configuration
-Try to ping CAMERA_02 from CAMERA_02.
+Try to ping CAMERA_02 from CAMERA_01.
 
 ![Ping fail](assets/no-trunk-ping.gif)
 
@@ -200,13 +200,13 @@ While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that w
     Creating Custom Wireshark Columns
   </summary>
 
-  > Start a Wireshark capture on the link between SWITCH1 and SWITCH2. Then, initiate another ping from CAMERA_01 to CENTRAL_SERVER. In the `Packet Details` pane, observe that the switch inserts a 4-byte 802.1Q VLAN tag immediately after the Ethernet header, indicating the frame originated from a VLAN 20 access port.
-  > 
-  > ![Ping VLAN Tag](assets/wireshark-switch1-switch2-annotated.png)
-  > 
-  > As the packet is forwarded to its destination, SWITCH2 removes the VLAN tag before delivering it to the receiving device.
+  > From the `Edit` dropdown menu, select `Preferences...`
   >
-  > ![Ping VLAN Tag Removed](assets/wireshark-switch2-server.png)
+  > Select `Columns`, then `+` to add a new data column
+  >
+  > ![Wireshark Preferences](assests/wireshark-preferences.png)
+  >
+  > 
 </details>
 
 ![Wireshark VLAN ARP](assets/wireshark-vlan-arp.png)
