@@ -277,13 +277,25 @@ ip --color --family inet address show
 ### Hopping the VLANs
 With the subinterfaces created, ATTACKER can now communicate with any device on the network. From here they could pivot to more advanced techniques such as enumeration, exploitation, priv escalation, etc. Lets test this free rein access with `ping`.
 
-From ATTACKER, ping GUEST_LAPTOP. If you are receiving a `Destination Host Unreachable` message, ensure that Yersinia is still running in another terminal session. A trunk link must be established for this to work.
+From ATTACKER, ping GUEST_LAPTOP (VLAN 10).
 
 ![Kali Ping VLAN10](assets/kali-ping-guest.gif)
 
+> Note: If you are receiving a `Destination Host Unreachable` message, ensure that Yersinia is still running in another terminal session. A trunk link must be established for this to work.
+
+From ATTACK, ping CAMERA_01 (VLAN 20).
+
 ![Kali Ping VLAN20](assets/kali-ping-camera1.gif)
 
-![Kali Scan VLAN20](assets/kali-scan-camera2.gif)
+Just to demonstrate the potential to pivot to other attacks, scan a port on CAMERA_02 using the `eth0.20` subinterface.
+
+![Kali Scan VLAN20](assets/kali-scan-camera2.png)
 
 ## Mitigations
-- Disable negotiations on all user-facing switchports.
+This attack can be mitigated by disabling auto trunk negotiations on all user-facing switch ports. You can try this out yourself by adding the following configurations [when assigning VLANs to the switch interfaces](https://github.com/CybernetSamurai/Practical_IoT_Hacking/).
+<pre>
+  SWITCH(config-if)# switchport mode access
+  SWITCH(config-if)# switchport nonegotiate
+</pre>
+
+The first command forces the interface to operate as an access port, while the second command disables sending DTP packets.
