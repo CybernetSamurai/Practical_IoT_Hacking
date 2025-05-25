@@ -204,7 +204,7 @@ While Yersinia is running, press `G` again and naviagate to `802.1q`. Now that w
   >
   > Select `Columns`, then `+` to add a new data column
   >
-  > ![Wireshark Preferences](assests/wireshark-preferences.png)
+  > ![Wireshark Preferences](assets/wireshark-preferences.png)
   >
   > 
 </details>
